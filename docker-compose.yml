@@ -1,0 +1,106 @@
+# Define the services (containers) that make up your application
+services:
+    # Laravel application service
+    app:
+        # Build the image from the Dockerfile in the current directory
+        build:
+            context: .
+            dockerfile: Dockerfile
+
+        # Container name for easy identification
+        container_name: gac-app
+
+        # Restart policy - always restart if container stops
+        restart: unless-stopped
+
+        # Working directory inside the container
+        working_dir: /var/www/html
+
+        # Mount volumes for persistent data and development
+        volumes:
+            # Mount your local code directory to the container
+            # This allows real-time code changes during development
+            - .:/var/www/html
+
+            # Mount storage directory for persistent file uploads and logs
+            - storage_data:/var/www/html/storage
+
+        # Network configuration
+        networks:
+            - gac-network
+
+        # Environment variables for the Laravel application
+        environment:
+            # Database connection settings (should match your .env file)
+            - DB_HOST=db
+            - DB_PORT=3306
+            - DB_DATABASE=${DB_DATABASE}
+            - DB_USERNAME=${DB_USERNAME}
+            - DB_PASSWORD=${DB_PASSWORD}
+
+            # Application environment
+            - APP_ENV=production
+            - APP_DEBUG=false
+            - APP_URL=http://localhost
+
+        # Service dependencies - wait for database to be ready
+        depends_on:
+            - db
+
+        # Port mapping - map container port 80 to host port 8080
+        ports:
+            - "8080:80"
+
+    # MySQL database service
+    db:
+        # Use official MySQL 8.4 image
+        image: mysql:8.4
+
+        # Container name for easy identification
+        container_name: gac-db
+
+        # Restart policy
+        restart: unless-stopped
+
+        # Environment variables for MySQL configuration
+        environment:
+            # Root password for MySQL (use a strong password in production)
+            MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+
+            # Database name to create automatically
+            MYSQL_DATABASE: ${DB_DATABASE}
+
+            # User credentials for Laravel application
+            MYSQL_USER: ${DB_USERNAME}
+            MYSQL_PASSWORD: ${DB_PASSWORD}
+
+        # Mount volumes for persistent database data
+        volumes:
+            # Persist MySQL data across container restarts
+            - mysql_data:/var/lib/mysql
+
+            # Custom MySQL configuration (optional)
+            # - ./mysql-config:/etc/mysql/conf.d
+
+        # Port mapping - expose MySQL port for external access if needed
+        ports:
+            - "3306:3306"
+
+        # Network configuration
+        networks:
+            - gac-network
+
+# Define named volumes for persistent data
+volumes:
+    # MySQL data persistence
+    mysql_data:
+        driver: local
+
+    # Laravel storage persistence
+    storage_data:
+        driver: local
+
+# Define custom network for service communication
+networks:
+    gac-network:
+        driver: bridge
