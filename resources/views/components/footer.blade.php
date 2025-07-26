@@ -3,7 +3,7 @@
         <div class="col-span-1 md:col-span-2">
             <div class="flex items-center mb-4">
                 <img src="{{ asset('logo.png') }}" alt="Logo" class="w-12 h-12 mr-3" />
-                <span class="text-3xl font-bold">Game Ako Chronicles</span>
+                <span class="text-3xl font-bold">MoneyMinted Blogs</span>
             </div>
             <p class="text-gray-300 text-sm mb-4">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Enim
                 necessitatibus similique aspernatur obcaecati veritatis. Aperiam cum porro sequi, totam minima

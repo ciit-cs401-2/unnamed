@@ -6,7 +6,7 @@
 <div class="flex items-center justify-center min-h-screen">
     <div class="bg-[#24263b] p-8 rounded-lg shadow-lg w-full max-w-md"> {{-- Adjust background color --}}
         <h2 class="text-3xl font-bold mb-6 text-center text-white">Register</h2>
-        <form action="{{ route('register') }}" method="POST">
+        <form action="/register" method="POST">
             @csrf
             <div class="mb-4">
                 <label for="name" class="block text-white text-sm font-bold mb-2">Name:</label>
@@ -32,6 +32,9 @@
                 <input type="password" id="password_confirmation" name="password_confirmation"
                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-50 mb-3 leading-tight focus:outline-none focus:shadow-outline bg-[#3a3f5c]"
                     placeholder="Confirm your password"> {{-- Adjust input background --}}
+                    @error('password')
+                    <p class="text-red-400 text-sm mt-1">{{ $message }}</p>
+                    @enderror
             </div>
             <div class="flex items-center justify-between">
                 <button type="submit"

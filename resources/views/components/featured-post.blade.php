@@ -6,7 +6,6 @@
     <div class="p-8 flex flex-col justify-center">
         <h2 class="text-4xl font-bold mb-4 leading-tight text-white">{{$featuredPosts->title}}.</h2>
         <p class="text-gray-300 text-lg mb-6">{{$featuredPosts->content}}</p>
-        <button class="bg-[#e94560] hover:bg-[#c2364e] text-white font-bold py-2 px-4 rounded self-start">Read
-            More</button>
+        <a href="{{ route('posts.show', $post->id) }}" class="text-[#e94560] hover:underline text-sm">Read More</a>
     </div>
 </div>

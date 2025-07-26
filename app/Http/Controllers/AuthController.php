@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
+// use Illuminate\Support\Facades\Log;
 
 class AuthController extends Controller
 {
@@ -65,11 +66,15 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
+        //   dd('register reached', $request->all());
+
         $validatedData = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
+
+        // dd('Reached here', $request->all());
 
         try {
             $user = User::create([
@@ -81,6 +86,7 @@ class AuthController extends Controller
             throw $ex;
         }
 
+        // dd("User created!", $user);
         Auth::login($user);
 
         return redirect('/'); // Redirect to the home/welcome page after successful registration
