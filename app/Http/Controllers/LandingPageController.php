@@ -15,7 +15,8 @@ class LandingPageController extends Controller
         //return view('welcome', ['featuredPosts' => $featuredPosts, 'recentPosts' => $recentPosts]);
         $featuredPosts = Post::where('featured_post', 1)
             ->orderBy('publication_date', 'desc')
-            ->first();
+            // ->first();
+            ->get();
         $recentPosts = Post::where('publication_date', '!=', null)
             ->orderBy('publication_date', 'desc')
             ->get();

@@ -11,7 +11,15 @@
     <p class="text-[#e94560] font-semibold mb-4">
         Category: {{ $post->categories->first()->category_name ?? 'Uncategorized' }}
     </p>
-    <img src="{{ $post->featured_image_url }}" alt="Post Image" class="w-full h-auto rounded mb-6">
+
+    @php
+        $imageUrl = Str::startsWith($post->featured_image_url, ['http', 'https'])
+            ? $post->featured_image_url
+            : asset('storage/' . $post->featured_image_url);
+    @endphp
+
+    <img src="{{ $imageUrl }}" alt="Post Image" class="w-full h-auto rounded mb-6">
+
     <div class="text-lg leading-relaxed">{{ $post->content }}</div>
 </div>
 @endsection

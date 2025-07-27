@@ -43,6 +43,8 @@
             <input type="file" name="featured_image" id="featured_image" class="text-white">
         </div>
 
+
+        {{-- testing mulitple featured --}}
         <div class="mb-6">
             <label class="inline-flex items-center">
                 <input type="checkbox" name="featured_post" value="1" class="form-checkbox text-[#e94560] mr-2">

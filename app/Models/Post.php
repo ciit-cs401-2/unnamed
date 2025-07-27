@@ -22,6 +22,7 @@ class Post extends Model
         "featured_image_url",
         "views_count",
         "user_id",
+        'featured_post', 
     ];
 
     public $timestamps = false;
