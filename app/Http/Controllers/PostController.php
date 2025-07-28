@@ -12,6 +12,7 @@ class PostController extends Controller
     public function show($id)
     {
         $post = \App\Models\Post::with(['user', 'categories'])->findOrFail($id);
+        $post->increment('views_count');
         return view('posts.show', compact('post'));
     }
 

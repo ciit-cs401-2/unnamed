@@ -5,9 +5,12 @@
 @section('content')
 <div class="bg-[#24263b] p-8 rounded-lg shadow-lg text-white">
     <h1 class="text-4xl font-bold mb-4">{{ $post->title }}</h1>
-    <p class="text-sm text-gray-400 mb-2">
-        By {{ $post->user->name }} | {{ date('F d, Y', strtotime($post->publication_date)) }}
+
+    <p class="text-sm text-gray-400 mb-2 flex items-center gap-2">
+        By {{ $post->user->name }} | {{ date('F d, Y', strtotime($post->publication_date)) }} 
+        •  {{ $post->views_count }} views
     </p>
+
     <p class="text-[#e94560] font-semibold mb-4">
         Category: {{ $post->categories->first()->category_name ?? 'Uncategorized' }}
     </p>
