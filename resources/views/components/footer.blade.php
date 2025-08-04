@@ -34,7 +34,7 @@
                 <li><a href="#" class="hover:text-[#e94560]">Homepage</a></li>
                 <li><a href="#" class="hover:text-[#e94560]">Blog</a></li>
                 <li><a href="#" class="hover:text-[#e94560]">About</a></li>
-                <li><a href="#" class="hover:text-[#e94560]">Contact</a></li>
+                <li><a href="{{ route('contact.form') }}" class="hover:text-[#e94560]">Contact</a></li>
             </ul>
         </div>
 
