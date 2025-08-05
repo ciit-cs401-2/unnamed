@@ -8,6 +8,8 @@
             {{-- Conditional display for logged-in user --}}
             @auth {{-- This is a Laravel Blade directive to check if a user is authenticated --}}
             <span class="text-white">Welcome, {{ Auth::user()->name }}!</span>
+            <a href="{{ route('profile.show') }}" class="text-white hover:text-[#e94560]">Profile</a>
+            
             <form action="{{route('logout')}}" method="POST" class="inline">
                 @csrf
                 <button type="submit" class="text-white hover:text-[#e94560]">Logout</button>

@@ -5,9 +5,10 @@
                 <img src="{{ asset('logo.png') }}" alt="Logo" class="w-12 h-12 mr-3" />
                 <span class="text-3xl font-bold">MoneyMinted Blogs</span>
             </div>
-            <p class="text-gray-300 text-sm mb-4">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Enim
-                necessitatibus similique aspernatur obcaecati veritatis. Aperiam cum porro sequi, totam minima
-                consequuntur, aspernatur deleniti vero repellendus dorales.</p>
+            <p class="text-gray-300 text-sm mb-4">At MoneyMinted, we believe that financial literacy isn’t just a skill 
+                — it’s a superpower. Whether you're budgeting your first paycheck, navigating the stock market, or planning
+                 for early retirement, our mission is to provide clear, actionable insights that help you take control of your
+                  money and your future. Because when you understand your finances, you’re not just surviving — you’re thriving.</p>
             <div class="flex space-x-4">
                 <a href="https://facebook.com" target="_blank" class="text-white hover:text-[#e94560]">
                     <img src="https://img.icons8.com/ios-filled/30/ffffff/facebook-new.png" alt="Facebook"

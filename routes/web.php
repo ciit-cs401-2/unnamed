@@ -7,6 +7,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ProfileController;
 
 // Guest routes (only accessible when not logged in)
 // Route::middleware('guest')->group(function () {
@@ -29,4 +30,6 @@ Route::post('/contact', [ContactController::class, 'submitForm'])->name('contact
 Route::middleware('auth')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::resource('roles', RoleController::class);
+    Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
+    Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
 });
