@@ -4,6 +4,7 @@
                 class="h-8 mr-2"><a href={{route('welcome')}}>MoneyMinted</a></div>
         <div class="flex items-center space-x-4">
             <a href="{{route('welcome')}}" class="text-white hover:text-[#e94560]">Home</a>
+            <a href="{{route('about')}}" class="text-white hover:text-[#e94560]">About Us</a> {{-- Added this line --}}
 
             {{-- Conditional display for logged-in user --}}
             @auth {{-- This is a Laravel Blade directive to check if a user is authenticated --}}
