@@ -18,7 +18,7 @@
                     <img src="https://img.icons8.com/ios-filled/30/ffffff/instagram-new--v1.png" alt="Instagram"
                         class="w-8 h-8" />
                 </a>
-                <a href="https://tiktok.com" target="_blank" class="text-white hover:text-[#e94560]">
+                <a href="https://www.tiktok.com/@azefps_" target="_blank" class="text-white hover:text-[#e94560]">
                     <img src="https://img.icons8.com/ios-filled/30/ffffff/tiktok--v1.png" alt="Tiktok"
                         class="w-8 h-8" />
                 </a>
@@ -34,12 +34,12 @@
             <ul class="space-y-2 text-gray-300">
                 <li><a href="#" class="hover:text-[#e94560]">Homepage</a></li>
                 <li><a href="#" class="hover:text-[#e94560]">Blog</a></li>
-                <li><a href="#" class="hover:text-[#e94560]">About</a></li>
+                <li><a href="{{route('about')}}" class="hover:text-[#e94560]">About</a></li>
                 <li><a href="{{ route('contact.form') }}" class="hover:text-[#e94560]">Contact</a></li>
             </ul>
         </div>
 
-        <div>
+        {{-- <div>
             <h4 class="text-xl font-bold mb-4">Tags</h4>
             <ul class="space-y-2 text-gray-300">
                 <li><a href="#" class="hover:text-[#e94560]">Style</a></li>
@@ -47,7 +47,7 @@
                 <li><a href="#" class="hover:text-[#e94560]">Coding</a></li>
                 <li><a href="#" class="hover:text-[#e94560]">Travel</a></li>
             </ul>
-        </div>
+        </div> --}}
 
         <div>
             <h4 class="text-xl font-bold mb-4">Social</h4>

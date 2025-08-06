@@ -48,7 +48,7 @@ return new class extends Migration
         Schema::table('comments', function (Blueprint $table) {
             $table->unsignedBigInteger("post_id");
             $table->unsignedBigInteger("user_id");
-            $table->unsignedBigInteger("parent_comment_id");
+            $table->unsignedBigInteger("parent_comment_id")->nullable();
             $table->foreign("post_id")->references("id")->on("posts");
             $table->foreign("user_id")->references("id")->on("users");
             $table->foreign("parent_comment_id")->references("id")->on("comments");

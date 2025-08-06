@@ -8,6 +8,7 @@ use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CommentController;
 
 // Guest routes
 Route::get('/', [LandingPageController::class, 'index'])->name('welcome');
@@ -23,6 +24,8 @@ Route::get('/categories/{id}', [CategoryController::class, 'show'])->name('categ
 Route::get('/contact', [ContactController::class, 'showForm'])->name('contact.form');
 Route::get('/about', [LandingPageController::class, 'about'])->name('about');
 Route::post('/contact', [ContactController::class, 'submitForm'])->name('contact.submit');
+Route::view('/about', 'about')->name('about');
+Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
 
 // Authenticated routes
 Route::middleware('auth')->group(function () {

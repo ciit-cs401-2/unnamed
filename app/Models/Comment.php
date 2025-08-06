@@ -8,33 +8,41 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Comment extends Model
 {
-    public $fillable = [
+    public $timestamps = false;
+
+    protected $fillable = [
         "comment_content",
         "comment_date",
         "reviewer_name",
         "reviewer_email",
         "is_hidden",
+        "post_id",
+        "user_id",
+        "parent_comment_id"
     ];
 
-    public $timestamps = false;
+    protected $casts = [
+        'is_hidden' => 'boolean',
+        'comment_date' => 'datetime',
+    ];
 
     public function post(): BelongsTo
     {
-        return $this->belongsTo(Post::class, "post_id");
+        return $this->belongsTo(Post::class);
     }
 
     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class, "user_id");
+        return $this->belongsTo(User::class);
     }
 
-    public function comments(): HasMany
+    public function replies(): HasMany
     {
-        return $this->hasMany(Comment::class);
+        return $this->hasMany(Comment::class, 'parent_comment_id');
     }
 
-    public function comment(): BelongsTo
+    public function parent(): BelongsTo
     {
-        return $this->belongsTo(Comment::class, "parent_comment_id");
+        return $this->belongsTo(Comment::class, 'parent_comment_id');
     }
 }
