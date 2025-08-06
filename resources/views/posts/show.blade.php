@@ -25,4 +25,60 @@
 
     <div class="text-lg leading-relaxed">{{ $post->content }}</div>
 </div>
+
+{{-- Comments List --}}
+<div class="mt-12 bg-[#1e1f2d] p-6 rounded-lg text-white">
+    <h3 class="text-2xl font-bold mb-6">Comments ({{ $post->comments->count() }})</h3>
+
+    @forelse ($post->comments as $comment)
+        <div class="mb-6 border-b border-gray-700 pb-4">
+            <p class="text-sm text-gray-400">
+                <strong>{{ $comment->reviewer_name ?? $comment->user->name }}</strong> 
+                • {{ $comment->created_at->diffForHumans() }}
+            </p>
+            <p class="mt-2">{{ $comment->content }}</p>
+        </div>
+    @empty
+        <p class="text-gray-400">No comments yet. Be the first to comment!</p>
+    @endforelse
+</div>
+
+{{-- Comment Form --}}
+<div class="mt-10 bg-[#1e1f2d] p-6 rounded-lg text-white">
+    <h3 class="text-2xl font-bold mb-4">Leave a Comment</h3>
+
+    @if(session('success'))
+        <div class="bg-green-600 p-2 rounded mb-4 text-white">
+            {{ session('success') }}
+        </div>
+    @endif
+
+    <form action="{{ route('comments.store') }}" method="POST" class="space-y-4">
+        @csrf
+        <input type="hidden" name="post_id" value="{{ $post->id }}">
+
+        @guest
+            <div>
+                <label for="reviewer_name" class="block mb-1 text-sm">Name</label>
+                <input type="text" name="reviewer_name" id="reviewer_name" class="w-full p-2 rounded bg-[#2c2f48] text-white" required>
+                @error('reviewer_name')<p class="text-red-500 text-sm mt-1">{{ $message }}</p>@enderror
+            </div>
+
+            <div>
+                <label for="reviewer_email" class="block mb-1 text-sm">Email</label>
+                <input type="email" name="reviewer_email" id="reviewer_email" class="w-full p-2 rounded bg-[#2c2f48] text-white" required>
+                @error('reviewer_email')<p class="text-red-500 text-sm mt-1">{{ $message }}</p>@enderror
+            </div>
+        @endguest
+
+        <div>
+            <label for="comment_content" class="block mb-1 text-sm">Comment</label>
+            <textarea name="comment_content" id="comment_content" rows="4" class="w-full p-2 rounded bg-[#2c2f48] text-white" required></textarea>
+            @error('comment_content')<p class="text-red-500 text-sm mt-1">{{ $message }}</p>@enderror
+        </div>
+
+        <button type="submit" class="bg-[#e94560] text-white px-4 py-2 rounded hover:bg-pink-600">Post Comment</button>
+    </form>
+</div>
+
 @endsection
